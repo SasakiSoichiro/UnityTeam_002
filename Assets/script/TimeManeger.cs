@@ -1,18 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class TimeManeger : MonoBehaviour
+public class CountdownTimer : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private float countdown = 30f; // カウントダウン開始時間
 
-    // Update is called once per frame
     void Update()
     {
-        
+        // タイマーが終了する前
+        if (countdown > 0f)
+        {
+            countdown -= Time.deltaTime; // 経過時間を減算
+            Debug.Log("残り時間: " + countdown.ToString("F2"));
+        }
+        else
+        {
+            // タイマーが終了した後の処理
+            Debug.Log("タイマー終了!");
+        }
     }
 }
