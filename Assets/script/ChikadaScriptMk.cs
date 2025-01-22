@@ -8,7 +8,7 @@ public class ChikadaScriptMk : MonoBehaviour
     public GameObject spherePrefab; // 生成する球のPrefab
     public int numberOfSpheres = 1; // 生成する球の数
     public float sphereSize = 1.0f; // 球のサイズ
-    public float spawnInterval = 5f; // 生成間隔（秒）
+    public float spawnInterval = 2.5f; // 生成間隔（秒）
 
     void Start()
     {
@@ -17,8 +17,11 @@ public class ChikadaScriptMk : MonoBehaviour
             mainCamera = Camera.main; // メインカメラを自動取得
         }
         // 10秒ごとに生成を繰り返す
-        InvokeRepeating(nameof(SpawnSpheres), 0f, spawnInterval);
-        SpawnSpheres();
+        if (numberOfSpheres < 20)
+        {
+            InvokeRepeating(nameof(SpawnSpheres), 0f, spawnInterval);
+            SpawnSpheres();
+        }
     }
 
     void SpawnSpheres()
