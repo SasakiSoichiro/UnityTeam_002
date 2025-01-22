@@ -4,50 +4,41 @@ using UnityEngine;
 
 public class MouseScript : MonoBehaviour
 {
-    //public float mouseSensitivity = 500f; // マウス感度
-    //public Transform playerBody;         // カメラが追従するプレイヤーオブジェクト
-    //private float xRotation = 0f;        // カメラの上下回転のための変数
+    public float mouseSensitivity = 2.0f; // マウス感度
+    public float moveSpeed = 5f; // 移動速度
+    public Transform playerBody; // プレイヤー本体（カメラが親オブジェクト）
 
-    //void Start()
-    //{
-    //    // カーソルをロック
-    //    Cursor.lockState = CursorLockMode.Locked;
-    //}
+    private float xRotation = 0f; // カメラの上下回転
+    private float yRotation = 0f; // カメラの左右回転
 
-    //void Update()
-    //{
-    //    // マウスの移動量を取得
-    //    float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-    //    float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked; // マウスカーソルを画面中央に固定
+        Cursor.visible = false; // マウスカーソルを非表示
+    }
 
-    //    // 上下回転（カメラのみ）
-    //    xRotation -= mouseY;
-    //    xRotation = Mathf.Clamp(xRotation, -90f, 90f); // 上下回転角度を制限
-    //    transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-
-    //    // 左右回転（プレイヤー全体を回転）
-    //    playerBody.Rotate(Vector3.up * mouseX);
-    //}
-    public float mouseSensitivity = 0.0000001f; // マウスの感度
-    public Transform playerBody; // プレイヤーの体（カメラの親オブジェクト）
-    public GameObject bulletPrefab; // 弾のプレハブ
-    public Transform shootingPoint; // 弾を発射する位置
-    private float xRotation = 0f; // カメラのX軸回転
-    
-    void Update() 
-    { // マウスで視点操作
+    void Update()
+    {
+        // マウスの動きを取得
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
-        xRotation -= mouseY; xRotation = Mathf.Clamp(xRotation, -90f, 90f); // 上下制限
+
+        // 上下回転（x軸）を計算
+        xRotation -= mouseY;
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f); // 上下回転制限
+
+        // 左右回転（y軸）を計算
+        yRotation += mouseX;
+
+        // カメラの回転を適用
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f); // カメラの上下回転
-        playerBody.Rotate(Vector3.up * mouseX); // プレイヤーの左右回転// マウスの左クリックで弾を発射
-        if (Input.GetMouseButtonDown(0)) // 左クリック（0）
-        { 
-            //Shoot(); 
-        } 
-    } 
-    //void Shoot() 
-    //{ // 弾を発射
-    //    Instantiate(bulletPrefab, shootingPoint.position, shootingPoint.rotation); 
-    //}
+        playerBody.rotation = Quaternion.Euler(0f, yRotation, 0f); // プレイヤー本体の左右回転
+
+        // プレイヤーの移動処理
+        float moveX = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime; // 横移動
+        float moveZ = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime; // 前後移動
+
+        // 移動を反映
+        transform.Translate(moveX, 0f, moveZ);
+    }
 }
