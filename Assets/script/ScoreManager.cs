@@ -11,7 +11,7 @@ public class ScoreManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // ‚à‚µInspector‚©‚çİ’è‚µ‚Ä‚¢‚È‚¯‚ê‚ÎA©“®‚ÅƒŠƒ“ƒN‚·‚éˆ—‚ğ’Ç‰Á‚·‚é‚±‚Æ‚à‚Å‚«‚é‚æB
+        //Œ©‚Â‚©‚ç‚È‚©‚Á‚½ê‡©“®‚ÅŒ©‚Â‚¯‚é
         if (scoreText == null)
         {
             scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
