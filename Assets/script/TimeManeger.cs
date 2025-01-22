@@ -1,21 +1,37 @@
 using UnityEngine;
+using TMPro;  // TextMeshProを使うために必要
+using UnityEngine.SceneManagement; // シーン遷移のために追加！
 
 public class CountdownTimer : MonoBehaviour
 {
-    private float countdown = 30f; // カウントダウン開始時間
+    public float timeRemaining = 60f; // タイマーの初期時間
+    public TMP_Text timerText; // TextMeshProのテキストコンポーネント
+
+    void Start()
+    {
+        if (timerText == null)
+            timerText = GetComponent<TMP_Text>(); // もしTextMeshProが設定されてなければ自動で取ってくる
+    }
 
     void Update()
     {
-        // タイマーが終了する前
-        if (countdown > 0f)
+        if (timeRemaining > 0)
         {
-            countdown -= Time.deltaTime; // 経過時間を減算
-            Debug.Log("残り時間: " + countdown.ToString("F2"));
+            timeRemaining -= Time.deltaTime; // 1フレームごとに減らしていく
         }
         else
         {
-            // タイマーが終了した後の処理
-            Debug.Log("タイマー終了!");
+            timeRemaining = 0f; // タイマーが0になったら止める
+            // タイマーがゼロになったら次のシーンに移動
+            if (!SceneManager.GetActiveScene().name.Equals("NextScene")) // すでに遷移してたら重複しないように
+            {
+                SceneManager.LoadScene("NextScene"); // 次のシーンに遷移（シーン名をここに入力）
+            }
         }
+
+        // タイマーを「00:00」形式で表示
+        int minutes = Mathf.FloorToInt(timeRemaining / 60);
+        int seconds = Mathf.FloorToInt(timeRemaining % 60);
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds); // テキスト更新
     }
 }
