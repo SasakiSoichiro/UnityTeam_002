@@ -335,7 +335,6 @@ GameObject:
   - component: {fileID: 961379760}
   - component: {fileID: 961379759}
   - component: {fileID: 961379758}
-  - component: {fileID: 961379761}
   - component: {fileID: 961379762}
   m_Layer: 0
   m_Name: Main Camera
@@ -418,21 +417,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 933438747}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &961379761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 961379757}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 787560e1607ab1e478c53abde88edcb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseSensitivity: 5
-  moveSpeed: 5
-  playerBody: {fileID: 933438747}
 --- !u!114 &961379762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,6 +432,8 @@ MonoBehaviour:
   mouseSensitivity: 2
   moveSpeed: 5
   playerBody: {fileID: 933438747}
+  bulletPrefab: {fileID: 1347980008}
+  shootingPoint: {fileID: 961379760}
 --- !u!1 &1320659842
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,6 +483,52 @@ MonoBehaviour:
   numberOfSpheres: 1
   sphereSize: 1
   spawnInterval: 2.5
+--- !u!1 &1347980008
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1347980010}
+  - component: {fileID: 1347980009}
+  m_Layer: 0
+  m_Name: BulletObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1347980009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347980008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc95cc087c854e84aa3980f0efd44fb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sphere: {fileID: 8788341615864280207, guid: 8439a463cad0bcb4d90bac4e3a03f50b, type: 3}
+  speed: 100
+--- !u!4 &1347980010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347980008}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.8000381, y: -0.7944045, z: 4.0485497}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -504,3 +536,4 @@ SceneRoots:
   - {fileID: 821367420}
   - {fileID: 1320659844}
   - {fileID: 933438747}
+  - {fileID: 1347980010}

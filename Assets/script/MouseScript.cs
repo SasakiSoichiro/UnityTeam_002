@@ -11,6 +11,9 @@ public class MouseScript : MonoBehaviour
     private float xRotation = 0f; // カメラの上下回転
     private float yRotation = 0f; // カメラの左右回転
 
+    public GameObject bulletPrefab; // 弾のプレハブ
+    public Transform shootingPoint; // 弾を発射する位置
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked; // マウスカーソルを画面中央に固定
@@ -34,11 +37,16 @@ public class MouseScript : MonoBehaviour
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f); // カメラの上下回転
         playerBody.rotation = Quaternion.Euler(0f, yRotation, 0f); // プレイヤー本体の左右回転
 
-        // プレイヤーの移動処理
-        float moveX = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime; // 横移動
-        float moveZ = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime; // 前後移動
-
-        // 移動を反映
-        transform.Translate(moveX, 0f, moveZ);
+        // 左クリックで弾を発射
+        if (Input.GetMouseButtonDown(0))
+        { 
+            Shoot();
+        }
     }
+
+    void Shoot()
+    { // 弾を発射
+        Instantiate(bulletPrefab, shootingPoint.position, shootingPoint.rotation);
+    }
+
 }
