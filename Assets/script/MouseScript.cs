@@ -11,8 +11,9 @@ public class MouseScript : MonoBehaviour
     private float xRotation = 0f; // カメラの上下回転
     private float yRotation = 0f; // カメラの左右回転
 
-    public GameObject bulletPrefab; // 弾のプレハブ
-    public Transform shootingPoint; // 弾を発射する位置
+    public GameObject bulletPrefab;
+    public Transform gunTransform; // 銃口の位置
+    public float bulletSpeed = 20f; // 弾の速さ
 
     void Start()
     {
@@ -22,6 +23,10 @@ public class MouseScript : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetButtonDown("Fire1")) // Fire1はデフォルトでマウスの左クリック
+        {
+            Shoot();
+        }
         // マウスの動きを取得
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
@@ -37,16 +42,20 @@ public class MouseScript : MonoBehaviour
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f); // カメラの上下回転
         playerBody.rotation = Quaternion.Euler(0f, yRotation, 0f); // プレイヤー本体の左右回転
 
-        // 左クリックで弾を発射
-        if (Input.GetMouseButtonDown(0))
-        { 
-            Shoot();
-        }
     }
-
     void Shoot()
-    { // 弾を発射
-        Instantiate(bulletPrefab, shootingPoint.position, shootingPoint.rotation);
+    {
+        // 弾を生成しろ
+        GameObject bullet = Instantiate(bulletPrefab, gunTransform.position, gunTransform.rotation);
+
+        // 弾に力を加えるぜ
+        Rigidbody rb = bullet.GetComponent<Rigidbody>();
+        rb.AddForce(gunTransform.forward * bulletSpeed, ForceMode.VelocityChange);
+    }
+    void OnBecameInvisible()
+    {
+        // オレの弾が画面外に出たら、すぐ消す。
+        Destroy(gameObject);
     }
 
 }

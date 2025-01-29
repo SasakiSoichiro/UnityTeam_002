@@ -642,8 +642,9 @@ MonoBehaviour:
   mouseSensitivity: 2
   moveSpeed: 5
   playerBody: {fileID: 0}
-  bulletPrefab: {fileID: 0}
-  shootingPoint: {fileID: 0}
+  bulletPrefab: {fileID: 8788341615864280207, guid: 8439a463cad0bcb4d90bac4e3a03f50b, type: 3}
+  gunTransform: {fileID: 1353432647}
+  bulletSpeed: 20
 --- !u!1 &1795352420
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,9 +719,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc95cc087c854e84aa3980f0efd44fb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 8788341615864280207, guid: 8439a463cad0bcb4d90bac4e3a03f50b, type: 3}
-  gunTransform: {fileID: 1353432647}
-  bulletSpeed: 90
   maxDistance: 1
 --- !u!4 &1801737609
 Transform:
