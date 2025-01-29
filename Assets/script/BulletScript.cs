@@ -4,38 +4,53 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
-    public GameObject Sphere;
-    public GameObject Bullet;
-    public Transform firePoint;     // 弾が発射される位置
-    public float speed = 20f; // 弾のスピード
+    // 弾のPrefabを用意しろ
+    public GameObject bulletPrefab;
+    public Transform gunTransform; // 銃口の位置
+    public float bulletSpeed = 20f; // 弾の速さ
+    public float maxDistance = 50f;  // 最大射程
+    private Vector3 startPosition;
     void Start()
-    { // 弾の移動方向を設定
-        Rigidbody rb = Bullet.GetComponent<Rigidbody>();
-        rb.velocity = transform.forward * speed;
+    {
+        startPosition = transform.position;
     }
     void Update()
     {
-        // マウス左クリックで弾を発射
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetButtonDown("Fire1")) // Fire1はデフォルトでマウスの左クリック
         {
             Shoot();
         }
+
+        // 発射位置からの距離を計算して、最大距離を超えたら消す
+        if (Vector3.Distance(startPosition, transform.position) > maxDistance)
+        {
+            Destroy(gameObject);
+        }
     }
     void OnCollisionEnter(Collision collision)
-    { // ターゲットに当たったら弾を消す
-        if (collision.gameObject.CompareTag("Target"))
+    {
+        if (collision.gameObject.CompareTag("Enemy")) // 敵に当たったら
         {
-            Destroy(Sphere);
+            // 敵を倒す処理だな
+            Destroy(collision.gameObject); // 敵を消し去る
         }
+
+        Destroy(gameObject); // 弾自身は消す
     }
 
 
     void Shoot()
     {
-        // 弾を生成
-        GameObject bullet = Instantiate(Bullet, firePoint.position, firePoint.rotation);
+        // 弾を生成しろ
+        GameObject bullet = Instantiate(bulletPrefab, gunTransform.position, gunTransform.rotation);
 
-        // Rigidbodyで弾を飛ばす
+        // 弾に力を加えるぜ
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
+        rb.AddForce(gunTransform.forward * bulletSpeed, ForceMode.VelocityChange);
+    }
+    void OnBecameInvisible()
+    {
+        // オレの弾が画面外に出たら、すぐ消す。
+        Destroy(gameObject);
     }
 }
