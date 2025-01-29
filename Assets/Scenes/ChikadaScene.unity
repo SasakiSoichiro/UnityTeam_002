@@ -432,8 +432,9 @@ MonoBehaviour:
   mouseSensitivity: 2
   moveSpeed: 5
   playerBody: {fileID: 933438747}
-  bulletPrefab: {fileID: 1347980008}
-  shootingPoint: {fileID: 961379760}
+  bulletPrefab: {fileID: 8788341615864280207, guid: 8439a463cad0bcb4d90bac4e3a03f50b, type: 3}
+  gunTransform: {fileID: 961379760}
+  bulletSpeed: 100
 --- !u!1 &1320659842
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,7 +447,7 @@ GameObject:
   - component: {fileID: 1320659845}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -512,8 +513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc95cc087c854e84aa3980f0efd44fb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sphere: {fileID: 8788341615864280207, guid: 8439a463cad0bcb4d90bac4e3a03f50b, type: 3}
-  speed: 100
+  maxDistance: 1000
 --- !u!4 &1347980010
 Transform:
   m_ObjectHideFlags: 0

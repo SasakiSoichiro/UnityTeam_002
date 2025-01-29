@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6631179648574792341}
   - component: {fileID: 7416564454973919544}
   - component: {fileID: 2998165141408222691}
+  - component: {fileID: 639512010339004324}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Target
@@ -105,3 +106,19 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &639512010339004324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6540366866718269267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc95cc087c854e84aa3980f0efd44fb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 8788341615864280207, guid: 8439a463cad0bcb4d90bac4e3a03f50b, type: 3}
+  gunTransform: {fileID: 0}
+  bulletSpeed: 20
+  maxDistance: 50
