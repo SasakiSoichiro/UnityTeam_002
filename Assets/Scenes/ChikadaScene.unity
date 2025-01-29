@@ -512,8 +512,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc95cc087c854e84aa3980f0efd44fb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sphere: {fileID: 8788341615864280207, guid: 8439a463cad0bcb4d90bac4e3a03f50b, type: 3}
-  speed: 100
+  Sphere: {fileID: 1320659842}
+  Bullet: {fileID: 8788341615864280207, guid: 8439a463cad0bcb4d90bac4e3a03f50b, type: 3}
+  firePoint: {fileID: 961379760}
+  speed: 10000
 --- !u!4 &1347980010
 Transform:
   m_ObjectHideFlags: 0
