@@ -23,9 +23,9 @@ public class CountdownTimer : MonoBehaviour
         {
             timeRemaining = 0f; // タイマーが0になったら止める
             // タイマーがゼロになったら次のシーンに移動
-            if (!SceneManager.GetActiveScene().name.Equals("NextScene")) // すでに遷移してたら重複しないように
+            if (!SceneManager.GetActiveScene().name.Equals("stage2")) // すでに遷移してたら重複しないように
             {
-                SceneManager.LoadScene("NextScene"); // 次のシーンに遷移（シーン名をここに入力）
+                SceneManager.LoadScene("stage2"); // 次のシーンに遷移（シーン名をここに入力）
             }
         }
 
