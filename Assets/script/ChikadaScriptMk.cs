@@ -29,7 +29,7 @@ public class ChikadaScriptMk : MonoBehaviour
         for (int i = 0; i < numberOfSpheres; i++)
         {
             // ランダムなViewport座標 (x: 0〜1, y: 0〜1)
-            float randomX = Random.Range(120f, 130f);
+            float randomX = Random.Range(130f, 140f);
             float randomY = Random.Range(1475f,1485f);
             float randomZ = Random.Range(3001f, 2981f);
 
