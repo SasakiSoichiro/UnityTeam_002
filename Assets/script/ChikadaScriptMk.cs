@@ -29,15 +29,18 @@ public class ChikadaScriptMk : MonoBehaviour
         for (int i = 0; i < numberOfSpheres; i++)
         {
             // ランダムなViewport座標 (x: 0〜1, y: 0〜1)
-            float randomX = Random.Range(0f, 1f);
-            float randomY = Random.Range(0f, 1f);
+            float randomX = Random.Range(120f, 130f);
+            float randomY = Random.Range(1475f,1485f);
+            float randomZ = Random.Range(3001f, 2981f);
 
             // Z軸はカメラからの距離を指定
             //float distanceFromCamera = Random.Range(5f, 10f); // 5〜10ユニットの範囲でランダム
             float distanceFromCamera = 20f; // 5〜10ユニットの範囲でランダム
 
             // Viewport座標をワールド座標に変換
-            Vector3 randomPosition = mainCamera.ViewportToWorldPoint(new Vector3(randomX, randomY, distanceFromCamera));
+            //Vector3 randomPosition = mainCamera.ViewportToWorldPoint(new Vector3(randomX, randomY, distanceFromCamera));
+            Vector3 randomPosition = (new Vector3(randomX, randomY, randomZ));
+
 
             // 球を生成
             GameObject sphere = Instantiate(spherePrefab, randomPosition, Quaternion.identity);
