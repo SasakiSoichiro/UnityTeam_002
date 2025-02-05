@@ -6,7 +6,8 @@ public class BulletScript : MonoBehaviour
 {
     // 弾のPrefabを用意しろ
 
-    public float maxDistance = 50f;  // 最大射程
+    public float maxDistance = 50.0f;  // 最大射程
+    public GameObject BulletPrefab;
     private Vector3 startPosition;
     void Start()
     {
@@ -24,7 +25,7 @@ public class BulletScript : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Target")) // 敵に当たったら
+        if (collision.gameObject.CompareTag("Sphere")) // 敵に当たったら
         {
             // 敵を倒す処理だな
             Destroy(collision.gameObject); // 敵を消し去る
@@ -34,7 +35,7 @@ public class BulletScript : MonoBehaviour
 
         Debug.Log("衝突したオブジェクト: " + collision.gameObject.name);
 
-        if (collision.gameObject.CompareTag("Target"))
+        if (collision.gameObject.CompareTag("Sphere"))
         {
             Debug.Log("ターゲットに当たった");
             Destroy(gameObject);  // 弾を消す
