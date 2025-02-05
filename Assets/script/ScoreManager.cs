@@ -7,6 +7,7 @@ public class ScoreManager : MonoBehaviour
 {
     public TextMeshProUGUI scoreText; // TextMesh Pro UIコンポーネント
     private int score = 0; // スコアの初期値
+    private int points = 10; // 撃ったときにもらえるスコア
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,16 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Target")) // 弾が当たったか確認
+        {
+            IncreaseScore(points); // スコアを増加
+            Destroy(gameObject); // 的を消す
+        }
     }
 
     // スコアを増加させるメソッド
