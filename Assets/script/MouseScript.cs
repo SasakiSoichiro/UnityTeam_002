@@ -39,8 +39,8 @@ public class MouseScript : MonoBehaviour
         yRotation += mouseX;
 
         // カメラの回転を適用
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f); // カメラの上下回転
-        playerBody.rotation = Quaternion.Euler(0f, yRotation, 0f); // プレイヤー本体の左右回転
+        transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f); // カメラの上下回転
+        //playerBody.rotation = Quaternion.Euler(0f, yRotation, 0f); // プレイヤー本体の左右回転
 
     }
     void Shoot()
